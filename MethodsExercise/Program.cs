@@ -4,62 +4,94 @@
     {
         static void Main(string[] args)
         {
-            string namePerson;
-            string ageInput;
+            string namePerson = "";
+            string ageInput = "";
             int agePerson = 0;
-            string personFavFood;
-            string personFavGame;
+            string personFavFood = "";
+            string personFavGame = "";
+            string? readResult;
             
             
             Console.WriteLine("What's your name?");
-            namePerson = Console.ReadLine();
-            
-            Console.WriteLine("What's your age?");
-            ageInput = Console.ReadLine();
-            if (!ValidAge(ageInput));
+            readResult = Console.ReadLine();
+            if (readResult != null)
             {
-                Console.WriteLine("Your age is not valid. Try again.");
+                namePerson = readResult;
+            }
+
+            bool ageOk = false;
+            do
+            {
+                Console.WriteLine("What's your age?");
+                readResult = Console.ReadLine();
+                if (readResult != null)
+                {
+                    ageOk = ValidAge(ageInput);
+
+                    if (!ageOk)
+                    {
+                        Console.WriteLine("Your age is not valid. Try again.");
+                        
+                    }
+
+                }
+                else
+                {
+                    agePerson = Convert.ToInt32(ageInput);
+                }
+
+            } while (!ageOk);
+
+
+
+            Console.WriteLine("What's your favorite food?"); 
+            readResult = Console.ReadLine();
+            if (readResult != null)
+            {
+                personFavFood = readResult;    
             }
             
-            Console.WriteLine("What's your favorite food?");
-            personFavFood = Console.ReadLine();
             
             Console.WriteLine("What's your favorite game?");
-            personFavGame = Console.ReadLine();
-
-            Console.WriteLine(
-                $"OK! Thanks for the information {namePerson}! Well make sure your data is sold to the highest bidder.");
+            readResult = Console.ReadLine();
+            if (readResult != null)
+            {
+                personFavGame = readResult;    
+            } 
             
             
+            Console.WriteLine($"OK! Thanks for the information {namePerson}! Well make sure your data is sold to the highest bidder.");
+            Console.WriteLine($"Just to confirm {namePerson}...\nYou're {agePerson} years old.\nAnd you enjoy {personFavFood}, and {personFavGame}.");
+            Console.WriteLine("Have a nice day! Press enter to exit.");
+            Console.ReadLine();
             
-            
-            // Console.WriteLine($"")
-            // {agePerson} {personFavFood} {personFavGame}");
-
         }
-        //Custom Method Definitions
+        
+            //Custom Method Definitions
         public static bool ValidAge(string ageInput)
         {
             if (!int.TryParse(ageInput, out int agePerson))
             {
                 return false;
             }
-            
+
             // Check over 10
+            int.TryParse(ageInput, out agePerson);
             if (agePerson <= 10)
             {
                 return false;
             }
-            
+
             // Check unlikely
+            int.TryParse(ageInput, out agePerson);
             if (agePerson >= 90)
             {
                 return false;
-            }
+            } 
             return true;
-
-        }
-        
+        } 
+            
     }
-    
+
 }
+    
