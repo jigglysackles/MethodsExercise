@@ -9,7 +9,7 @@
             int agePerson = 0;
             string personFavFood;
             string personFavGame;
-            bool ageOk;
+            
             
             Console.WriteLine("What's your name?");
             namePerson = Console.ReadLine();
@@ -38,20 +38,22 @@
 
         }
         //Custom Method Definitions
-        public static bool ValidAge(string, out bool ageOk);
+        public static bool ValidAge(string ageInput)
         {
-            ageInput.TryParse();
+            if (!int.TryParse(ageInput, out int agePerson))
+            {
+                return false;
+            }
             
             // Check over 10
             if (agePerson <= 10)
             {
-                Console.WriteLine("You're too young to be using this. Get someone older than 10 and try again.");
                 return false;
             }
+            
             // Check unlikely
             if (agePerson >= 90)
             {
-                Console.WriteLine("Yeah...I don't believe you.");
                 return false;
             }
             return true;
