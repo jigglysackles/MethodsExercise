@@ -33,13 +33,13 @@
                         Console.WriteLine("Your age is not valid. Try again.");
                         
                     }
+                    else
+                    {
+                        agePerson = Convert.ToInt32(ageInput);
+                    }
 
                 }
-                else
-                {
-                    agePerson = Convert.ToInt32(ageInput);
-                }
-
+                
             } while (!ageOk);
 
 
@@ -79,6 +79,7 @@
             int.TryParse(ageInput, out agePerson);
             if (agePerson <= 10)
             {
+                Console.WriteLine("You're too young. Find an adult and try again.");
                 return false;
             }
 
@@ -86,6 +87,7 @@
             int.TryParse(ageInput, out agePerson);
             if (agePerson >= 90)
             {
+                Console.WriteLine("This is highly doubtful. Try a lower age.");
                 return false;
             } 
             return true;
