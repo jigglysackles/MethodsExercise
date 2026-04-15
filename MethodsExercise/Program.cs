@@ -56,17 +56,17 @@
             {
                 Console.WriteLine("How many fingers am I holding up?");
                 string? readResultFingers = Console.ReadLine();
-                if (int.TryParse(readResultFingers, out fingersUp))
+                if (int.TryParse(readResultFingers, out fingersUp) || fingersUp <= 0)
                 {
-                    MultiplyNumbers(fingersUp, agePerson, ref fingerAge);
+                    Console.WriteLine("Please enter a number above 0."); 
                 }
                 
-                if (fingersUp <= 0)
+                else
                 {
-                    Console.WriteLine("Please enter a number above 0.");
+                    fingerAge = MultiplyNumbers(fingersUp, agePerson);
                 }
                     
-            } while (fingerAge <= 0 || fingersUp <= 0 || agePerson <= 0);
+            } while (fingerAge <= 0 || fingersUp <= 0);
 
 
             Console.WriteLine(
@@ -80,10 +80,10 @@
             //string? menuSelection; 
             Console.WriteLine(
                 "By the way, I can do other math with your age and fingers. Would you like to see more options? (y/n)\n");
+            string? readResultMenu;
             do
             {
-                string? readResultMenu = Console.ReadLine()?.ToLower();
-                
+                readResultMenu = Console.ReadLine()?.ToLower();
                 if (readResultMenu == "y")
                 {
                     try
@@ -101,11 +101,11 @@
                     {
                         //menuSelection = readResult.ToLower();
                         
-                        switch (readResultSelection?.ToLower())
+                        switch (readResultSelection.ToLower())
                         {
                             case "a":
-                            
-                                AddNumbers(agePerson, fingersUp, ref fingerAge);
+
+                                fingerAge = AddNumbers(agePerson, fingersUp);
                                 Console.WriteLine(
                                     $"Adding your age, {agePerson}, and my fingers up, {fingersUp}, will give you {fingerAge}.");
 
@@ -113,14 +113,14 @@
                                 
                             case "s":
                             
-                                SubtractNumbers(agePerson, fingersUp, ref fingerAge);
+                                fingerAge = SubtractNumbers(agePerson, fingersUp);
                                 Console.WriteLine(
                                     $"Subtracting your age, {agePerson}, by my fingers up, {fingersUp}, will give you {fingerAge}.");
 
                                 break;
                                 
                             case "d":
-                                DivideNumbers(agePerson, fingersUp, ref fingerAge);
+                                fingerAge = DivideNumbers(agePerson, fingersUp);
                                 Console.WriteLine(
                                     $"Dividing your age, {agePerson}, by my fingers up, {fingersUp}, will give you {fingerAge}.");
 
@@ -133,13 +133,13 @@
                     break;
                 }
                 
-
-                if (readResultMenu == "n")
+                else if (readResultMenu == "n")
                 {
                     Console.WriteLine("Well that's disappointing.");
                     break;
                 }
-
+                
+                else
                 {
                     Console.WriteLine("Is entering 'y' or 'n' really that hard?");
                 }
@@ -149,42 +149,18 @@
             Console.WriteLine("Have a nice day! Press enter to exit.");
             Console.ReadLine();
             
-
         }
 
         //Custom Method Definitions
-        public static bool ValidAge(int agePerson)
-        {
-            if (agePerson <= 11 || agePerson >= 90)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        public static void MultiplyNumbers(int agePerson, int fingersUp, ref int fingerAge)
-        {
-            fingerAge = agePerson * fingersUp;
-
-        }
-        public static void AddNumbers(int agePerson, int fingersUp, ref int fingerAge)
-        {
-            fingerAge = agePerson + fingersUp;
-
-        }
-        public static void SubtractNumbers(int agePerson, int fingersUp, ref int fingerAge)
-        {
-            fingerAge = agePerson - fingersUp;
-
-        }
-        public static void DivideNumbers(int agePerson, int fingersUp, ref int fingerAge)
-        {
-            fingerAge = agePerson / fingersUp;
-
-        }
+        public static bool ValidAge(int age) => age > 11 && age < 90; 
         
+        public static int MultiplyNumbers(int a, int b) => a * b;
+      
+        public static int AddNumbers(int a, int b) => a + b;
+
+        public static int SubtractNumbers(int a, int b) => a - b;
+        
+        public static int DivideNumbers(int a, int b) => a / b;
 
     }
 }
-    
