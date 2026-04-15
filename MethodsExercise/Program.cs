@@ -99,7 +99,8 @@
                     {
                         //Ignore: Clears debug session exceptions
                     }
-                    Console.WriteLine($"Great choice {namePerson}! What would you like me to do? \nI can Add, Subtract, or Divide (I already did multiplication so look above for that.) \n\n(please enter a,s,d) ");
+                    Console.WriteLine(
+                        $"\nGreat choice {namePerson}! What would you like me to do? \nI can Add, Subtract, or Divide (I already did multiplication so look above for that.)\n(please enter a,s,d) ");
                     readResult = Console.ReadLine();
                     if (readResult != null)
                     {
