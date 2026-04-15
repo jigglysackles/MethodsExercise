@@ -27,7 +27,7 @@
                 Console.WriteLine("What's your age?");
                 readResult = Console.ReadLine();
 
-                if (int.TryParse(readResult, out agePerson) || !ValidAge(agePerson))
+                if (!int.TryParse(readResult, out agePerson) || !ValidAge(agePerson))
                 {
                     Console.WriteLine("Your age is not valid. Try again.");
                     
@@ -56,7 +56,7 @@
             {
                 Console.WriteLine("How many fingers am I holding up?");
                 string? readResultFingers = Console.ReadLine();
-                if (int.TryParse(readResultFingers, out fingersUp) || fingersUp <= 0)
+                if (!int.TryParse(readResultFingers, out fingersUp) || fingersUp <= 0)
                 {
                     Console.WriteLine("Please enter a number above 0."); 
                 }
@@ -74,7 +74,7 @@
             Console.WriteLine(
                 $"Just to confirm {namePerson}...\nYou're {agePerson} years old.\nAnd you enjoy {personFavFood}, and {personFavGame}.\n");
             Console.WriteLine(
-                $"Side Note: If you multiply your fingers up {fingersUp} and your age {agePerson} you will get {fingerAge}.\nIt doesn't affect anything, just thought you'd like to know.\n\n");
+                $"Side Note: If you multiply your fingers up, {fingersUp}, and your age, {agePerson}, you will get {fingerAge}.\nIt doesn't affect anything, just thought you'd like to know.\n\n");
             
             // yes/no menu
             //string? menuSelection; 
