@@ -5,37 +5,32 @@
         static void Main(string[] args)
         {
             string namePerson = "";
-            int agePerson = 0;
+            int agePerson;
             string personFavFood = "";
             string personFavGame = "";
-            int fingersUp = 0;
-            string? readResult;
+            int fingersUp;
             int fingerAge = 0;
 
             Console.WriteLine("What's your name?");
-            readResult = Console.ReadLine();
-            if (readResult != null)
+            
+            string? readResultName = Console.ReadLine();
+            if (readResultName != null)
             {
-                namePerson = readResult;
+                namePerson = readResultName;
             }
 
 
+            
             do
             {
+                string? readResult;
                 Console.WriteLine("What's your age?");
                 readResult = Console.ReadLine();
 
-                if (int.TryParse(readResult, out agePerson))
-                {
-                    if (!ValidAge(agePerson))
-                    {
-                        Console.WriteLine("Your age is not valid. Try again.");
-                    }
-                }
-
-                else
+                if (int.TryParse(readResult, out agePerson) || !ValidAge(agePerson))
                 {
                     Console.WriteLine("Your age is not valid. Try again.");
+                    
                 }
 
             } while (!ValidAge(agePerson));
@@ -43,25 +38,25 @@
 
 
             Console.WriteLine("What's your favorite food?");
-            readResult = Console.ReadLine();
-            if (readResult != null)
+            string? readResultFood = Console.ReadLine();
+            if (readResultFood != null)
             {
-                personFavFood = readResult;
+                personFavFood = readResultFood;
             }
 
 
             Console.WriteLine("What's your favorite game?");
-            readResult = Console.ReadLine();
-            if (readResult != null)
+            string? readResultGame = Console.ReadLine();
+            if (readResultGame != null)
             {
-                personFavGame = readResult;
+                personFavGame = readResultGame;
             }
 
             do
             {
                 Console.WriteLine("How many fingers am I holding up?");
-                readResult = Console.ReadLine();
-                if (int.TryParse(readResult, out fingersUp))
+                string? readResultFingers = Console.ReadLine();
+                if (int.TryParse(readResultFingers, out fingersUp))
                 {
                     MultiplyNumbers(fingersUp, agePerson, ref fingerAge);
                 }
@@ -82,14 +77,14 @@
                 $"Side Note: If you multiply your fingers up {fingersUp} and your age {agePerson} you will get {fingerAge}.\nIt doesn't affect anything, just thought you'd like to know.\n\n");
             
             // yes/no menu
-            string? menuSelection; 
+            //string? menuSelection; 
             Console.WriteLine(
                 "By the way, I can do other math with your age and fingers. Would you like to see more options? (y/n)\n");
             do
             {
-                readResult = Console.ReadLine()?.ToLower();
+                string? readResultMenu = Console.ReadLine()?.ToLower();
                 
-                if (readResult == "y")
+                if (readResultMenu == "y")
                 {
                     try
                     {
@@ -101,12 +96,12 @@
                     }
                     Console.WriteLine(
                         $"\nGreat choice {namePerson}! What would you like me to do? \nI can Add, Subtract, or Divide (I already did multiplication so look above for that.)\n(please enter a,s,d) ");
-                    readResult = Console.ReadLine();
-                    if (readResult != null)
+                    string? readResultSelection = Console.ReadLine();
+                    if (readResultSelection != null)
                     {
-                        menuSelection = readResult.ToLower();
+                        //menuSelection = readResult.ToLower();
                         
-                        switch (menuSelection)
+                        switch (readResultSelection?.ToLower())
                         {
                             case "a":
                             
@@ -139,7 +134,7 @@
                 }
                 
 
-                if (readResult == "n")
+                if (readResultMenu == "n")
                 {
                     Console.WriteLine("Well that's disappointing.");
                     break;
@@ -148,7 +143,7 @@
                 {
                     Console.WriteLine("Is entering 'y' or 'n' really that hard?");
                 }
-            }while (readResult != "y" && readResult != "n");
+            }while (readResultMenu != "y" && readResultMenu != "n");
             
             
             Console.WriteLine("Have a nice day! Press enter to exit.");
