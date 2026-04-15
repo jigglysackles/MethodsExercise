@@ -5,7 +5,6 @@
         static void Main(string[] args)
         {
             string namePerson = "";
-            string ageInput = "";
             int agePerson = 0;
             string personFavFood = "";
             string personFavGame = "";
@@ -19,28 +18,26 @@
                 namePerson = readResult;
             }
 
-            bool ageOk = false;
+            
             do
             {
                 Console.WriteLine("What's your age?");
                 readResult = Console.ReadLine();
-                if (readResult != null)
-                {
-                    ageOk = ValidAge(ageInput);
 
-                    if (!ageOk)
+                if (int.TryParse(readResult, out agePerson))
+                {
+                    if (!ValidAge(agePerson))
                     {
                         Console.WriteLine("Your age is not valid. Try again.");
-                        
                     }
-                    else
-                    {
-                        agePerson = Convert.ToInt32(ageInput);
-                    }
-
                 }
                 
-            } while (!ageOk);
+                else 
+                {
+                    Console.WriteLine("Your age is not valid. Try again.");
+                }
+                
+            } while (!ValidAge(agePerson));
 
 
 
@@ -60,7 +57,7 @@
             } 
             
             
-            Console.WriteLine($"OK! Thanks for the information {namePerson}! Well make sure your data is sold to the highest bidder.");
+            Console.WriteLine($"OK! Thanks for the information {namePerson}! We'll make sure your data is sold to the highest bidder.");
             Console.WriteLine($"Just to confirm {namePerson}...\nYou're {agePerson} years old.\nAnd you enjoy {personFavFood}, and {personFavGame}.");
             Console.WriteLine("Have a nice day! Press enter to exit.");
             Console.ReadLine();
@@ -68,28 +65,13 @@
         }
         
             //Custom Method Definitions
-        public static bool ValidAge(string ageInput)
+        public static bool ValidAge(int agePerson)
         {
-            if (!int.TryParse(ageInput, out int agePerson))
+            if (agePerson <= 11 || agePerson >= 90)
             {
                 return false;
             }
-
-            // Check over 10
-            int.TryParse(ageInput, out agePerson);
-            if (agePerson <= 10)
-            {
-                Console.WriteLine("You're too young. Find an adult and try again.");
-                return false;
-            }
-
-            // Check unlikely
-            int.TryParse(ageInput, out agePerson);
-            if (agePerson >= 90)
-            {
-                Console.WriteLine("This is highly doubtful. Try a lower age.");
-                return false;
-            } 
+           
             return true;
         } 
             
